@@ -28,7 +28,7 @@ let assignmentOrCalcParser =
         | [] -> Set (variable, value)
         | _ -> Calc (variable, value, op)
 
-let negetiveParser = 
+let negativeParser = 
     // 이건 {값 | 변수명} 의 승리야
     pword "이건" >>. spaces >>. variableParser .>> spaces .>> pword "의 승리야"
     |>> fun x -> Neg (x)
@@ -89,5 +89,5 @@ do statementParserRef.Value <- choice [
     sleepParser .>> spaces ;
     conditionParser .>> spaces;
     whileParser .>> spaces;
-    negetiveParser .>> spaces;
+    negativeParser .>> spaces;
     ]
