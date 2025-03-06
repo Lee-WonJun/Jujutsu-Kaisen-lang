@@ -396,3 +396,9 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# Scala Metals
+.bsp
+.scala-build
+.metals
+.vscode
