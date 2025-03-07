@@ -65,11 +65,7 @@ case class Interpreter(
           case _ => this
 
     case `while` @ While(Condition(cond, block)) =>
-      var state = this
-      if cond.isTrue then
-        val nextState = eval(block)
-        nextState.eval(`while`)
-      else this
+      if cond.isTrue then eval(block).eval(`while`) else this
 
     case Return(value, div) =>
       this.copy(`return` = value.get / (if div then 2 else 1))
