@@ -16,7 +16,10 @@ extension [A](x: Parsley[A]) inline def p: Parsley[A] = x <* whitespaces
 extension (x: String)
   inline def toWords = sepBySpace(x.split(" ").map(string)*).void
 
-val number = digit.foldLeft1[Int](0)((n, d) => n * 10 + d.asDigit)
+val number =
+  val sign = '-'.as(-1) | '+'.as(1)
+  val digits = digit.foldLeft1[Int](0)((n, d) => n * 10 + d.asDigit)
+  (option(sign) <~> digits).map((s, n) => s.getOrElse(1) * n)
 
 val literal = (number <* whitespaces).map(Val.Num(_))
 

@@ -6,7 +6,7 @@ import ast.*
 
 class ParserTests extends munit.FunSuite:
   test("자료형"):
-    // assertEquals(number.parse("-3"), Success(-3))
+    assertEquals(number.parse("-3"), Success(-3))
     assertEquals(number.parse("0"), Success(0))
     assertEquals(number.parse("42"), Success(42))
     assertEquals(number.parse("123"), Success(123))
