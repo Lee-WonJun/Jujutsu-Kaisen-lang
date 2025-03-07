@@ -34,3 +34,20 @@ class InterpreterTest extends FunSuite:
         "[print] 0"
       )
     )
+
+  test("작별이다_최강"):
+    val interpreter = Interpreter()(using SleeplessContext)
+    assertEquals(
+      program
+        .parse("네놈은 최강 마저 5 이란 말이냐!!..! 작별이다 최강")
+        .map(interpreter.eval)
+        .map(_.`return`),
+      Success(12)
+    )
+    assertEquals(
+      program
+        .parse("네놈은 최강 마저 5 이란 말이냐!!..! 작별이다 최강 내가 없는 시대에 태어났을 뿐인 범부여")
+        .map(interpreter.eval)
+        .map(_.`return`),
+      Success(6)
+    )
