@@ -402,3 +402,6 @@ FodyWeavers.xsd
 .scala-build
 .metals
 .vscode
+
+# Scala Binary
+jjk-scala.*
