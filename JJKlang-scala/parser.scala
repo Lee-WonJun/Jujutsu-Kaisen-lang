@@ -60,7 +60,7 @@ val sleep =
 val block: Parsley[List[Stmt]] = many(~statement) <* whitespaces
 
 extension (p: Parsley[(Val, List[Stmt])])
-  inline def toCond = p.map[Stmt.Condition](Stmt.Condition(_, _))
+  inline def toCond = p.map(Condition(_, _))
 
 /** 넌 {정수값 | 변수A} 여서 {block} 인건가 아니면 {정수값 | 변수A} 여서 {block} 인건가 */
 val condition: Parsley[Stmt] =
@@ -78,3 +78,5 @@ val `while`: Parsley[Stmt] =
 
 val statement =
   assign.p | `return`.p | print.p | sleep.p | condition.p | `while`.p | negative.p
+
+val program = many(statement)

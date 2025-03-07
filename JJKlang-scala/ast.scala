@@ -17,6 +17,7 @@ enum Stmt:
   case If(`if`: Condition, `else`: Option[Condition])
   case While(`while`: Condition)
   case Return(v: Val, half: Boolean)
-  case Condition(v: Val, b: Block)
+
+case class Condition(v: Val, b: Block)
 
 type Block = Iterable[Stmt]
