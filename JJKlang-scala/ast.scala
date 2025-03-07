@@ -13,9 +13,9 @@ enum Stmt:
   case Print(name: Val)
   case Neg(name: Identifier)
   case Sleep(seconds: Long)
-  case Set(name: Identifier, value: Val)
+  case Assign(name: Identifier, value: Val, op: Iterable[Op])
   case If(`if`: Condition, `else`: Option[Condition])
-  case While(`while`: Condition, body: Block)
+  case While(`while`: Condition)
   case Return(v: Val, half: Boolean)
   case Condition(v: Val, b: Block)
 
