@@ -15,7 +15,7 @@ extension [A](xs: IterableOnce[A])
     * ```
     */
   inline def countConsecutive: List[(A, Int)] =
-    xs.toVector.foldRight(List.empty[(A, Int)]) { (x, acc) =>
+    xs.iterator.toVector.foldRight(List.empty[(A, Int)]) { (x, acc) =>
       acc match
         case (y, n) :: rest if y == x => (x, n + 1) :: rest
         case _                        => (x, 1) :: acc
