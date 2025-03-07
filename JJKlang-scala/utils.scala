@@ -1,5 +1,9 @@
 package utils
 
+extension [A, B](x: A)
+  inline def pipe(f: A => B): B = f(x)
+  inline infix def |>(f: A => B): B = f(x)
+
 extension [A](xs: IterableOnce[A])
   /** 리스트 내의 연속된 동일한 원소들을 세고, 각 원소와 그 원소가 연속으로 나타난 횟수를 쌍으로 표현한 리스트를 반환합니다.
     *

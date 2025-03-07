@@ -7,5 +7,6 @@
 
 //> using resourceDir ./resources
 
+//> using dep com.lihaoyi::mainargs::0.7.6
 //> using dep com.github.j-mie6::parsley::5.0.0-M13
 //> using test.dep org.scalameta::munit::1.1.0

@@ -40,7 +40,6 @@ scala --power package JJKlang-scala -o jjk-scala.jar -f
 
 # GraalVM
 scala --power package JJKlang-scala -o jjk-scala.graal --native-image -f
-./jjk-scala.graal JJKlang/sample.jjk
 
 # Scala Native
 scala --power package JJKlang-scala -o jjk-scala.native --native -f
@@ -50,15 +49,15 @@ scala --power package JJKlang-scala -o jjk-scala.native --native -f
 
 ```sh
 hyperfine --warmup 5 --export-markdown benchmark.md -N \
-  './jjk-scala.native -- JJKlang/sample.jjk --no-sleep' \
-  './jjk-scala.graal -- JJKlang/sample.jjk --no-sleep' \
-  './jjk-scala.jvm -- JJKlang/sample.jjk --no-sleep' \
-  'scala JJKlang-scala -- JJKlang/sample.jjk --no-sleep'
+  './jjk-scala.native -rS JJKlang/sample.jjk' \
+  './jjk-scala.graal -rS JJKlang/sample.jjk' \
+  './jjk-scala.jar -rS JJKlang/sample.jjk' \
+  'scala JJKlang-scala -- -rS JJKlang/sample.jjk'
 ```
 
 | Command | Mean [ms] | Min [ms] | Max [ms] | Relative |
 |:---|---:|---:|---:|---:|
-| `./jjk-scala.native -- JJKlang/sample.jjk --no-sleep` | 3.3 ± 0.9 | 2.0 | 8.5 | 1.00 |
-| `./jjk-scala.graal -- JJKlang/sample.jjk --no-sleep` | 7.4 ± 1.0 | 5.5 | 11.0 | 2.23 ± 0.66 |
-| `./jjk-scala.jvm -- JJKlang/sample.jjk --no-sleep` | 556.3 ± 21.3 | 521.3 | 581.1 | 167.44 ± 44.02 |
-| `scala JJKlang-scala -- JJKlang/sample.jjk --no-sleep` | 758.3 ± 12.9 | 734.8 | 780.5 | 228.25 ± 59.49 |
+| `./jjk-scala.native -rS JJKlang/sample.jjk` | 2.2 ± 0.3 | 1.8 | 3.5 | 1.00 |
+| `./jjk-scala.graal -rS JJKlang/sample.jjk` | 5.7 ± 0.8 | 4.9 | 8.8 | 2.60 ± 0.50 |
+| `./jjk-scala.jar -rS JJKlang/sample.jjk` | 418.4 ± 21.9 | 395.0 | 466.3 | 191.46 ± 25.89 |
+| `scala JJKlang-scala -- -rS JJKlang/sample.jjk` | 612.4 ± 13.2 | 595.7 | 640.4 | 280.19 ± 35.46 |
